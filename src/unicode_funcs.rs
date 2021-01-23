@@ -37,16 +37,16 @@ pub fn install_unicode_funcs(buffer: &mut Buffer) {
 		}
 		
         hb_unicode_funcs_set_combining_class_func(
-            funcs_ptr,
+            FUNCS_PTR,
             Some(unicode_combining_class),
             null_mut(),
             None,
         );
-        hb_unicode_funcs_set_compose_func(funcs_ptr, Some(unicode_compose), null_mut(), None);
-        hb_unicode_funcs_set_decompose_func(funcs_ptr, Some(unicode_decompose), null_mut(), None);
-        hb_unicode_funcs_set_mirroring_func(funcs_ptr, Some(unicode_mirror), null_mut(), None);
-        hb_unicode_funcs_set_script_func(funcs_ptr, Some(unicode_script), null_mut(), None);
-        hb_buffer_set_unicode_funcs(buffer.as_ptr(), funcs_ptr);
+        hb_unicode_funcs_set_compose_func(FUNCS_PTR, Some(unicode_compose), null_mut(), None);
+        hb_unicode_funcs_set_decompose_func(FUNCS_PTR, Some(unicode_decompose), null_mut(), None);
+        hb_unicode_funcs_set_mirroring_func(FUNCS_PTR, Some(unicode_mirror), null_mut(), None);
+        hb_unicode_funcs_set_script_func(FUNCS_PTR, Some(unicode_script), null_mut(), None);
+        hb_buffer_set_unicode_funcs(buffer.as_ptr(), FUNCS_PTR);
     }
 }
 
