@@ -34,6 +34,7 @@ pub fn install_unicode_funcs(buffer: &mut Buffer) {
 		if !FUNCS_READY {
 			FUNCS_PTR = make_unicode_funcs();
 			FUNCS_READY = true;
+			println!("Funcs initialized. Hopefully just once.");
 		}
 		
         hb_unicode_funcs_set_combining_class_func(
