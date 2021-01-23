@@ -30,6 +30,13 @@ pub fn install_unicode_funcs(buffer: &mut Buffer) {
     // TODO: probably want to lazy static initialize this
     let funcs_ptr = make_unicode_funcs();
     unsafe {
+		static FUNCS_READY: bool = false;
+		static FUNCS_PTR: *mut hb_unicode_funcs_t = std::ptr::null_mut();
+		if !FUNCS_READY {
+			FUNCS_PTR = make_unicode_funcs();
+			FUNCS_READY = false;
+		}
+		
         hb_unicode_funcs_set_combining_class_func(
             funcs_ptr,
             Some(unicode_combining_class),
