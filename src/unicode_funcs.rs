@@ -29,8 +29,8 @@ fn make_unicode_funcs() -> *mut hb_unicode_funcs_t {
 pub fn install_unicode_funcs(buffer: &mut Buffer) {
     // TODO: probably want to lazy static initialize this
     unsafe {
-		static FUNCS_READY: bool = false;
-		static FUNCS_PTR: *mut hb_unicode_funcs_t = std::ptr::null_mut();
+		static mut FUNCS_READY: bool = false;
+		static mut FUNCS_PTR: *mut hb_unicode_funcs_t = std::ptr::null_mut();
 		if !FUNCS_READY {
 			FUNCS_PTR = make_unicode_funcs();
 			FUNCS_READY = true;
